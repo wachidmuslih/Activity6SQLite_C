@@ -1,12 +1,10 @@
-package com.example.activity6sqlite_c.database;
+package com.example.KontakTemanku.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +28,7 @@ public class DBController extends SQLiteOpenHelper {
     }
 
     //mdl
+    //insert data
     public void  insertData(HashMap<String, String> queryValues){
         SQLiteDatabase basisdata = this.getWritableDatabase();
         ContentValues nilai = new ContentValues();
@@ -47,10 +46,12 @@ public class DBController extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery,null);
         if(cursor.moveToFirst()){
             do {
+                //ambil data
                 HashMap<String,String> map = new HashMap<>();
                 map.put("id",cursor.getString(0));
                 map.put("nama",cursor.getString(1));
                 map.put("telpon",cursor.getString(2));
+                //memasukkan ke daftar teman
                 daftarTeman.add(map);
             } while (cursor.moveToNext());
         }

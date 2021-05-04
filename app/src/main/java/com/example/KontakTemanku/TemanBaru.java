@@ -1,4 +1,4 @@
-package com.example.activity6sqlite_c;
+package com.example.KontakTemanku;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.activity6sqlite_c.database.DBController;
+import com.example.KontakTemanku.database.DBController;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.HashMap;
@@ -46,11 +46,12 @@ public class TemanBaru extends AppCompatActivity {
                 }
             }
 
-            private void callHome() {
-                Intent intent = new Intent(TemanBaru.this,MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+
         });
+    }
+    public void callHome() {
+        Intent intent = new Intent(TemanBaru.this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

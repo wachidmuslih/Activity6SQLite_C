@@ -1,4 +1,4 @@
-package com.example.activity6sqlite_c.database;
+package com.example.KontakTemanku.database;
 
 public class Teman {
     String id;

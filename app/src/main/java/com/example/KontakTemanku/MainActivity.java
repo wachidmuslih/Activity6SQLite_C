@@ -1,4 +1,4 @@
-package com.example.activity6sqlite_c;
+package com.example.KontakTemanku;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,19 +6,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 
-import com.example.activity6sqlite_c.adadpter.TemanAdapter;
-import com.example.activity6sqlite_c.database.DBController;
-import com.example.activity6sqlite_c.database.Teman;
+import com.example.KontakTemanku.adapter.TemanAdapter;
+import com.example.KontakTemanku.database.DBController;
+import com.example.KontakTemanku.database.Teman;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, TemanAdapter.TemanAdapterListener{
+    //deklarasi
     private RecyclerView recyclerView;
     private TemanAdapter adapter;
+
+    //untuk menyimpan data teman
     private ArrayList<Teman> temanArrayList;
     DBController controller = new DBController(this);
     String id,nm,tlp;
@@ -33,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         fab = findViewById(R.id.floatingBtn);
 
         BacaData();
-        adapter = new TemanAdapter(temanArrayList);
+        adapter = new TemanAdapter(temanArrayList, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -61,5 +67,17 @@ public class MainActivity extends AppCompatActivity {
             //pindahkan dari Teman kedalam ArrayList teman di adapter
             temanArrayList.add(teman);
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.popupmenu, popup.getMenu());
+        popup.show();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.activity6sqlite_c;
+package com.example.KontakTemanku;
 
 import org.junit.Test;
 
