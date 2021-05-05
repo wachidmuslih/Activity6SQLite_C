@@ -20,7 +20,11 @@ import java.util.ArrayList;
 public class TemanAdapter extends RecyclerView.Adapter<TemanAdapter.TemanViewHolder> implements Filterable {
 
     private ArrayList<Teman> listdata;
-    private TemanAdapterListener listener;
+    private final TemanAdapterListener listener;
+
+    public interface TemanAdapterListener {
+        void onTemanSelected(View v, Teman teman, int pos);
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
@@ -85,15 +89,12 @@ public class TemanAdapter extends RecyclerView.Adapter<TemanAdapter.TemanViewHol
 
             cardku.setOnClickListener(v->{
                 Teman KontakItem = listdata.get(getAdapterPosition());
-                listener.onTemanSelected(KontakItem, getAdapterPosition());
+                listener.onTemanSelected(v, KontakItem, getAdapterPosition());
 
             });
         }
     }
 
-    public interface KontakAdapterListener
-    {
-        void onTemanSelected( View v, teman, int pos);
-    }
+
 
 }
